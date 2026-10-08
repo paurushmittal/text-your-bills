@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+  ============================================================
+  QUICK EDIT — brand name + text number live in ONE place: the
+  SITE config in the <script> right below. Change it there and
+  every on-page mention, the "Text us" buttons and the footer update.
+  (Crawlers/link previews don't run JS, so also find-and-replace
+  "Mabel" in the <head> tags, then regenerate og.png:
+  python3 make_og.py "NewName")
+  ============================================================
+-->
+<script>
+  const SITE = {
+    BRAND: "Mabel",                     // working brand name
+    SMS_NUMBER: "+15550100199",         // used in sms: links (E.164)
+    SMS_DISPLAY: "(555) 010-0199",      // how the number is shown
+    EMAIL: null                         // null = hello@<brand-lowercase>.com
+  };
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mabel — Text us your bills. We handle the rest.</title>
+<meta name="description" content="Text us your bills. We find the savings and handle the annoying calls. No bank login, no app — just text a photo of a bill.">
+<meta name="theme-color" content="#FBF8F3">
+<link rel="canonical" href="https://paurushmittal.github.io/text-your-bills/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mabel">
+<meta property="og:title" content="Mabel — Text us your bills. We handle the rest.">
+<meta property="og:description" content="Text us your bills. We find the savings and handle the annoying calls. No bank login.">
+<meta property="og:url" content="https://paurushmittal.github.io/text-your-bills/">
+<meta property="og:image" content="https://paurushmittal.github.io/text-your-bills/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mabel — Text us your bills. We find the savings and handle the annoying calls. No bank login.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mabel — Text us your bills. We handle the rest.">
+<meta name="twitter:description" content="Text us your bills. We find the savings and handle the annoying calls. No bank login.">
+<meta name="twitter:image" content="https://paurushmittal.github.io/text-your-bills/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' rx='9' fill='%23EF5B2B'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='%23fff' stroke-width='3.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF8F3; --bg2:#F4EEE5; --ink:#1B1712; --ink2:#4A433A; --mute:#857B6E; --line:#E7DFD3;
+  --accent:#EF5B2B; --accent-d:#D44A1C; --accent-soft:#FDE8DE;
+  --imsg:#0A84FF; --gray:#E9E9EB;
+  --r:22px; --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.01em}
+h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:700}
+h2{font-size:clamp(34px,5.4vw,56px)}
+h3{font-size:21px;letter-spacing:-.02em;line-height:1.2;font-weight:650}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d)}
+.lede{font-size:clamp(18px,2.1vw,21px);color:var(--ink2);max-width:36ch}
+section{padding:96px 0}
+.sec-head{max-width:720px;margin-bottom:48px}
+.sec-head p{color:var(--ink2);font-size:19px;margin-top:16px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;font-weight:600;font-size:17px;text-decoration:none;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px rgba(239,91,43,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-primary:hover{background:var(--accent-d);transform:translateY(-1px)}
+.btn-ghost{color:var(--ink);background:transparent;border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink2)}
+.btn svg{width:20px;height:20px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(251,248,243,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:750;font-size:22px;letter-spacing:-.04em;text-decoration:none}
+.logo svg{width:30px;height:30px}
+.nav-links{display:flex;gap:30px;font-size:15px;font-weight:500;color:var(--ink2)}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--ink)}
+.nav .btn{height:42px;padding:0 18px;font-size:15px}
+@media (max-width:860px){.nav-links{display:none}}
+
+/* hero */
+.hero{padding:56px 0 80px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,7.4vw,86px);margin:18px 0 22px}
+.hero h1 .serif{color:var(--accent);font-size:1.06em}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;color:var(--ink2);font-size:15px;font-weight:500}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+.trust svg{width:18px;height:18px;color:var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 8px;font-size:14px;font-weight:500;color:var(--ink2)}
+.pill b{background:var(--accent-soft);color:var(--accent-d);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:650}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr;gap:48px}.hero{padding-top:32px}.hero-copy{text-align:left}}
+
+/* phone */
+.phone-stage{position:relative;display:flex;justify-content:center}
+.phone-stage::before{content:"";position:absolute;width:120%;height:85%;top:8%;left:-10%;background:radial-gradient(closest-side,rgba(239,91,43,.20),rgba(239,91,43,0) 70%);filter:blur(10px);z-index:0}
+.phone{position:relative;z-index:1;width:360px;flex:none;aspect-ratio:360/770;background:#0e0e10;border-radius:56px;padding:11px;box-shadow:0 50px 80px -30px rgba(40,25,10,.45),0 0 0 1.5px #2a2a2e inset,0 0 0 2px #cfc9c0}
+.screen{position:relative;height:100%;background:#fff;border-radius:46px;overflow:hidden;display:flex;flex-direction:column}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:98px;height:29px;background:#000;border-radius:20px;z-index:3}
+.status{display:flex;justify-content:space-between;align-items:center;padding:15px 28px 0 34px;height:48px;font-size:15px;font-weight:600;color:#000;flex:none}
+.status .icons{display:flex;gap:5px;align-items:center}
+.thread-head{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 0 8px;border-bottom:.5px solid #e2e2e2;background:rgba(249,249,249,.94);position:relative}
+.thread-head .back{position:absolute;left:12px;top:12px;color:var(--imsg)}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(160deg,#F7834F,#E2481A);display:grid;place-items:center}
+.avatar svg{width:21px;height:21px}
+.thread-head .who{font-size:11.5px;color:#111;display:flex;align-items:center;gap:2px}
+.thread{flex:1;min-height:0;padding:6px 12px 10px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;font-size:13.6px;line-height:1.32;overflow:hidden;letter-spacing:-.005em}
+.thread>*{flex-shrink:0}
+.ts{align-self:center;font-size:10.5px;color:#8a8a8e;margin:8px 0 6px;font-weight:500}
+.ts b{font-weight:600}
+.b{max-width:82%;padding:7px 12px;border-radius:18px;position:relative;word-wrap:break-word}
+.b.me{align-self:flex-end;background:var(--imsg);color:#fff}
+.b.them{align-self:flex-start;background:var(--gray);color:#000}
+.b.me.tail{border-bottom-right-radius:5px}
+.b.them.tail{border-bottom-left-radius:5px}
+.gap{height:6px}
+.receipt{align-self:flex-end;font-size:10px;color:#8a8a8e;margin:1px 4px 0 0;font-weight:500}
+.ex{display:inline-block;font-size:9.5px;color:#8a8a8e;margin:2px 0 0 6px;font-weight:500;letter-spacing:.01em}
+.ex.r{align-self:flex-end;margin:2px 6px 0 0}
+/* bill photo */
+.photo{align-self:flex-end;width:56%;border-radius:16px;overflow:hidden;background:#d9d4cc;padding:9px;transform:rotate(0deg)}
+.bill{background:#fffdf8;border-radius:5px;padding:8px 9px 8px;box-shadow:0 2px 6px rgba(0,0,0,.18);transform:rotate(-2.2deg);font-size:8.5px;color:#333;line-height:1.35}
+.bill .bh{display:flex;align-items:center;gap:5px;font-weight:700;font-size:9.5px;color:#123b5c;letter-spacing:-.01em}
+.bill .bh i{width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#2a7fbf,#123b5c);display:block}
+.bill .sub{color:#888;font-size:7.5px;margin:2px 0 6px}
+.bill .row{display:flex;justify-content:space-between;border-top:1px dashed #e4ddd0;padding:3px 0}
+.bill .tot{font-weight:700;color:#111;font-size:9.5px;border-top:1px solid #cfc6b6;padding-top:4px;margin-top:2px}
+.bill .bar{height:5px;margin-top:6px;background:repeating-linear-gradient(90deg,#333 0 1px,transparent 1px 3px,#333 3px 5px,transparent 5px 6px);opacity:.55}
+/* confirmation card */
+.conf{align-self:flex-start;width:84%;background:#fff;border:1px solid #e5e5ea;border-radius:16px;padding:9px 12px;margin-top:3px;font-size:11.5px;color:#222}
+.conf .ck{display:flex;align-items:center;gap:6px;font-weight:650;font-size:12px;color:#111}
+.conf .ck span{width:16px;height:16px;border-radius:50%;background:#34C759;display:grid;place-items:center}
+.conf .cl{margin-top:4px;font-size:10.8px;font-weight:550}.conf .cl.mute{margin-top:1px;color:#8a8a8e;font-weight:500}
+.conf dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin-top:7px;font-size:10.8px}
+.conf dt{color:#8a8a8e}
+.conf dd{text-align:right;font-weight:550}
+.composer{flex:none;display:flex;align-items:center;gap:8px;padding:6px 12px 24px}
+.composer .plus{width:30px;height:30px;border-radius:50%;background:#efeff0;display:grid;place-items:center;color:#7d7d82;font-size:20px;line-height:1}
+.composer .field{flex:1;height:32px;border:1px solid #d6d6da;border-radius:18px;font-size:13.5px;color:#b3b3b8;display:flex;align-items:center;padding:0 12px}
+/* message reveal */
+@media (prefers-reduced-motion:no-preference){
+  .reveal>*{animation:pop .45s cubic-bezier(.2,.8,.2,1) both}
+  .reveal>*:nth-child(1){animation-delay:.2s}.reveal>*:nth-child(2){animation-delay:.35s}.reveal>*:nth-child(3){animation-delay:.45s}
+  .reveal>*:nth-child(4){animation-delay:1.1s}.reveal>*:nth-child(5){animation-delay:1.2s}.reveal>*:nth-child(6){animation-delay:1.7s}
+  .reveal>*:nth-child(7){animation-delay:1.8s}.reveal>*:nth-child(8){animation-delay:1.85s}.reveal>*:nth-child(9){animation-delay:2.5s}
+  .reveal>*:nth-child(10){animation-delay:2.55s}.reveal>*:nth-child(11){animation-delay:3.1s}.reveal>*:nth-child(12){animation-delay:3.25s}
+  .reveal>*:nth-child(13){animation-delay:3.35s}.reveal>*:nth-child(14){animation-delay:3.4s}
+  @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+}
+@media (max-width:420px){.phone{zoom:.86}}
+@media (max-width:350px){.phone{zoom:.78}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 28px 32px;position:relative}
+.step .n{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent-d);display:grid;place-items:center;font-weight:700;font-size:17px;margin-bottom:22px}
+.step p{color:var(--ink2);margin-top:10px;font-size:16.5px}
+.step .note{margin-top:16px;font-size:14px;color:var(--mute);display:flex;gap:8px;align-items:flex-start}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* why */
+.why{background:var(--ink);color:#F6F1EA;border-radius:36px;margin:0 14px;padding:96px 0}
+.why .eyebrow{color:#FF9A70}
+.why .sec-head p{color:#BDB3A6}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.why-card{background:#25201A;border:1px solid #352E25;border-radius:var(--r);padding:30px}
+.why-card .ic{width:44px;height:44px;border-radius:12px;background:rgba(239,91,43,.16);color:#FF8A5C;display:grid;place-items:center;margin-bottom:20px}
+.why-card .ic svg{width:22px;height:22px}
+.why-card p{color:#BDB3A6;margin-top:10px;font-size:16.5px}
+@media (max-width:760px){.why-grid{grid-template-columns:1fr}.why{margin:0 8px;border-radius:28px;padding:72px 0}}
+
+/* handle */
+.handle-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.h-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 20px;transition:transform .2s,box-shadow .2s}
+.h-card:hover{transform:translateY(-3px);box-shadow:0 18px 30px -20px rgba(60,40,20,.35)}
+.h-card .ic{width:46px;height:46px;border-radius:14px;background:var(--bg2);display:grid;place-items:center;margin-bottom:18px;color:var(--ink)}
+.h-card .ic svg{width:23px;height:23px}
+.h-card h3{font-size:17.5px}
+.h-card p{color:var(--mute);font-size:14.5px;margin-top:6px;line-height:1.45}
+@media (max-width:980px){.handle-grid{grid-template-columns:repeat(2,1fr)}.h-card:last-child{grid-column:span 2}}
+@media (max-width:440px){.handle-grid{grid-template-columns:1fr}.h-card:last-child{grid-column:auto}}
+
+/* pricing band */
+.price{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;background:var(--accent-soft);border-radius:32px;padding:56px}
+.price h2{font-size:clamp(32px,4.6vw,48px)}
+.price p{color:var(--ink2);font-size:18px;margin-top:14px}
+.price ul{list-style:none;display:grid;gap:14px}
+.price li{display:flex;gap:12px;align-items:flex-start;font-weight:500;background:rgba(255,255,255,.7);border-radius:16px;padding:16px 18px}
+.price li svg{flex:none;width:22px;height:22px;color:var(--accent-d);margin-top:1px}
+@media (max-width:860px){.price{grid-template-columns:1fr;padding:36px 26px}}
+
+/* privacy */
+.priv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.priv{padding:26px 0 0;border-top:2px solid var(--ink)}
+.priv svg{width:26px;height:26px;color:var(--accent);margin-bottom:16px}
+.priv p{color:var(--ink2);font-size:16px;margin-top:8px}
+@media (max-width:900px){.priv-grid{grid-template-columns:1fr 1fr;gap:34px 22px}}
+@media (max-width:520px){.priv-grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-size:19px;font-weight:600;letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex:none;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;transition:transform .25s,background .2s}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--accent-soft)}
+.faq .ans{padding:0 50px 24px 0;color:var(--ink2);font-size:16.5px}
+@media (max-width:860px){.faq-wrap{grid-template-columns:1fr;gap:28px}.faq .ans{padding-right:0}}
+
+/* final cta */
+.final{text-align:center;padding:110px 0 120px}
+.final h2{font-size:clamp(42px,7vw,80px);max-width:14ch;margin:0 auto}
+.final h2 .serif{color:var(--accent)}
+.final p{color:var(--ink2);font-size:19px;margin:20px auto 0;max-width:40ch}
+.final .cta-row{justify-content:center}
+.final .num{margin-top:18px;font-size:15px;color:var(--mute)}
+.final .num a{font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--accent)}
+
+/* legal */
+.legal{border-top:1px solid var(--line);padding:72px 0}
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.legal h3{font-size:20px;margin-bottom:14px}
+.legal p,.legal li{color:var(--ink2);font-size:15px}
+.legal ul{padding-left:18px;display:grid;gap:7px}
+.legal .upd{font-size:13px;color:var(--mute);margin-top:14px}
+@media (max-width:760px){.legal-grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:34px 0 44px;font-size:14.5px;color:var(--mute)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+.foot .logo{font-size:19px;color:var(--ink)}
+.foot .logo svg{width:26px;height:26px}
+.foot nav{display:flex;gap:22px;flex-wrap:wrap}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="9" fill="#EF5B2B"/><path d="M9 16.5l4.5 4.5L23 11.5" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Home"><svg><use href="#mark"/></svg><span data-brand>Mabel</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#how">How it works</a><a href="#handle">What we handle</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" data-sms href="sms:+15550100199">Text us a bill</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><b>New</b> Your bills agent, by text</span>
+      <h1>Text us your bills. <span class="serif">We handle the rest.</span></h1>
+      <p class="lede">Text us your bills. We find the savings and handle the annoying calls. No bank login.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" data-sms href="sms:+15550100199">
+          <svg><use href="#i-chat"/></svg>Text us a bill
+        </a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="trust">
+        <span><svg><use href="#i-check"/></svg>No bank login</span>
+        <span><svg><use href="#i-check"/></svg>No app to download</span>
+        <span><svg><use href="#i-check"/></svg>Free to try</span>
+      </div>
+    </div>
+
+    <div class="phone-stage" aria-label="Example text conversation">
+      <div class="phone">
+        <div class="screen">
+          <div class="island"></div>
+          <div class="status">
+            <span>9:41</span>
+            <span class="icons" aria-hidden="true">
+              <svg width="18" height="11" viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="1" fill="#000"/><rect x="5" y="5" width="3" height="6" rx="1" fill="#000"/><rect x="10" y="2.5" width="3" height="8.5" rx="1" fill="#000"/><rect x="15" y="0" width="3" height="11" rx="1" fill="#000"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.1-1.2A10.2 10.2 0 0 0 8 .6C5.3.6 2.8 1.6.9 3.4L2 4.6a8.6 8.6 0 0 1 6-2.4zm0 3.3c1.4 0 2.6.5 3.6 1.4l1.1-1.2A6.8 6.8 0 0 0 8 3.9c-1.8 0-3.4.7-4.7 1.8l1.1 1.2c1-.9 2.2-1.4 3.6-1.4zm0 3.2c-.6 0-1.1.2-1.5.6L8 10.8l1.5-1.5c-.4-.4-.9-.6-1.5-.6z" fill="#000"/></svg>
+              <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.2" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#000"/><path d="M24 4v4c.8-.3 1.3-1.1 1.3-2S24.8 4.3 24 4z" fill="#000" opacity=".45"/></svg>
+            </span>
+          </div>
+          <div class="thread-head">
+            <svg class="back" width="12" height="20" viewBox="0 0 12 20"><path d="M10 2 2 10l8 8" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5l4 4L18.5 7.5"/></svg></div>
+            <div class="who"><span data-brand>Mabel</span> <svg width="7" height="10" viewBox="0 0 7 10"><path d="M1.5 1.5 5 5 1.5 8.5" stroke="#b0b0b5" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="thread reveal">
+            <div class="ts"><b>Today</b> 9:38 AM</div>
+            <div class="photo" role="img" aria-label="Photo of an example internet bill">
+              <div class="bill">
+                <div class="bh"><i></i>Northwave Internet</div>
+                <div class="sub">Monthly statement · Acct ••• 4471</div>
+                <div class="row"><span>Fiber 300 plan</span><span>$70.00</span></div>
+                <div class="row"><span>Equipment rental</span><span>$15.00</span></div>
+                <div class="row tot"><span>Amount due</span><span>$85.00</span></div>
+                <div class="bar"></div>
+              </div>
+            </div>
+            <div class="ex r">Example bill</div>
+            <div class="b them tail">Got it! Digging in now 👀</div>
+            <div class="ts"><b>Today</b> 11:52 AM</div>
+            <div class="b them tail">Found 3 things: your internet plan is $25/mo more than a plan with the same speed, and you’re paying for two streaming services that overlap. Want me to handle it?</div>
+            <div class="ex">Example</div>
+            <div class="b me tail">yes pls</div>
+            <div class="b them">Done ✅ Here’s your confirmation.</div>
+            <div class="conf">
+              <div class="ck"><span><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Plan switched</div>
+              <div class="cl">Northwave Internet · Fiber 300 · $45/mo</div>
+              <div class="cl mute">Confirmation #NW-58213</div>
+            </div>
+            <div class="ex">Example</div>
+          </div>
+
+          <div class="composer" aria-hidden="true"><div class="plus">+</div><div class="field">iMessage</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2 style="margin-top:14px">Three texts. <span class="serif">That’s it.</span></h2>
+      <p>No forms, no spreadsheets, no hold music. You text, we dig in, and you only say yes to what you like.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Text a bill</h3>
+        <p>Snap a photo of any bill or statement and text it to us. That’s the whole setup.</p>
+        <div class="note"><svg width="16" height="16" style="flex:none;margin-top:3px"><use href="#i-check"/></svg>Prefer email? Forward bill emails, or connect Gmail if you want.</div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>We find savings</h3>
+        <p>Cheaper phone, internet, insurance and subscription plans. Duplicate subscriptions. Stuff you forgot you’re paying for.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>You approve, we handle it</h3>
+        <p>Say yes and we cancel, negotiate or switch for you — then text you the confirmation.</p>
+        <div class="note"><svg width="16" height="16" style="flex:none;margin-top:3px"><use href="#i-check"/></svg>Nothing happens without your OK.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" aria-labelledby="why-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Why <span data-brand>Mabel</span></span>
+      <h2 id="why-h" style="margin-top:14px">Saving money shouldn’t <span class="serif">feel like a chore.</span></h2>
+      <p>Most money apps hand you a chart and leave the hard part to you. We do the hard part.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+        <h3>No bank login</h3>
+        <p>Other apps make you link your bank account. We just need a photo of a bill.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>No app to download</h3>
+        <p>It all happens in iMessage or regular texts — the app you already use every day.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <h3>We actually finish the job</h3>
+        <p>We make the calls and get the cancellation confirmations — not just a list of suggestions.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+        <h3>Free to try</h3>
+        <p>You only pay if we save you money. If we don’t find anything, you don’t owe us a thing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HANDLE -->
+<section id="handle">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we handle</span>
+      <h2 style="margin-top:14px">All the bills that <span class="serif">quietly add up.</span></h2>
+    </div>
+    <div class="handle-grid">
+      <div class="h-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.6a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 8.8a15 15 0 0 1 20 0"/><circle cx="12" cy="19.5" r="1"/></svg></div><h3>Phone &amp; internet</h3><p>Same speed, same coverage, lower price.</p></div>
+      <div class="h-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg></div><h3>Car &amp; home insurance</h3><p>We shop your coverage so you don’t have to.</p></div>
+      <div class="h-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="13" rx="2.5"/><path d="M8 21h8M10 9.5v5l4-2.5z"/></svg></div><h3>Streaming &amp; subscriptions</h3><p>Overlaps, duplicates and forgotten trials.</p></div>
+      <div class="h-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg></div><h3>Gym memberships</h3><p>The famously hard-to-cancel ones, too.</p></div>
+      <div class="h-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div><h3>Other recurring bills</h3><p>If it charges you every month, send it over.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="price">
+      <div>
+        <span class="eyebrow">Pricing</span>
+        <h2 style="margin-top:14px">Free to try. <span class="serif">You only pay if we save you money.</span></h2>
+        <p>Nothing to sign up for. Just text us a bill.</p>
+      </div>
+      <ul>
+        <li><svg><use href="#i-check"/></svg>Send as many bills as you like</li>
+        <li><svg><use href="#i-check"/></svg>We only act on what you approve</li>
+        <li><svg><use href="#i-check"/></svg>No savings, no charge</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Privacy</span>
+      <h2 style="margin-top:14px">Your bills, <span class="serif">your call.</span></h2>
+      <p>We built <span data-brand>Mabel</span> so you never have to hand over the keys to your money.</p>
+    </div>
+    <div class="priv-grid">
+      <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3>No bank logins. Ever.</h3><p>We never ask for bank logins or passwords.</p></div>
+      <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h3>You choose what to share</h3><p>Send only the bills you want help with. Nothing else.</p></div>
+      <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V5a2 2 0 0 1 4 0v5M11 10V4a2 2 0 0 1 4 0v6M15 10V6a2 2 0 0 1 4 0v8a8 8 0 0 1-8 8h-1a7 7 0 0 1-5.6-2.8L2.5 16a2 2 0 0 1 3-2.6L7 15"/></svg><h3>Nothing without your OK</h3><p>We never cancel, switch or sign you up for anything without your approval.</p></div>
+      <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg><h3>Delete anytime</h3><p>Your bills are stored securely, and you can ask us to delete them anytime.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:40px">
+  <div class="wrap faq-wrap">
+    <div>
+      <span class="eyebrow">FAQ</span>
+      <h2 style="margin-top:14px">Questions, <span class="serif">answered.</span></h2>
+      <p style="color:var(--ink2);margin-top:16px;font-size:18px">Something else on your mind? Just text us — a real answer is a message away.</p>
+    </div>
+    <div class="faq">
+      <details open><summary>Do I need to link my bank?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">No. We never ask for bank logins or passwords. A photo of a bill is all we need.</div></details>
+      <details><summary>How much does it cost?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">It’s free to try. You only pay if we save you money — if we don’t find savings, you don’t pay.</div></details>
+      <details><summary>What bills can you help with?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Phone and internet, car and home insurance, streaming and other subscriptions, gym memberships, and most other recurring bills. Not sure? Text it over and we’ll tell you.</div></details>
+      <details><summary>How do you cancel or negotiate for me?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Only with your OK. Depending on the provider, we’ll guide you through it, join a quick 3-way call with you, or contact the provider directly as your authorized agent. Either way, we send you the confirmation when it’s done.</div></details>
+      <details><summary>How long does it take?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">We usually get back to you within a few hours with what we found. Some changes, like switching plans, can take a little longer depending on the provider.</div></details>
+      <details><summary>Is my data safe?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Yes. You decide what to share, your bills are stored securely, and we only use them to find you savings. Ask us to delete them anytime.</div></details>
+      <details><summary>Can I stop anytime?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Yes. Just stop texting — there’s nothing to cancel. Want your bills gone too? Text “delete my data” and we’ll take care of it.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>Got a bill handy? <span class="serif">Text it over.</span></h2>
+    <p>Snap a photo, send it to us, and we’ll take it from there. No bank login. No app.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" data-sms href="sms:+15550100199"><svg><use href="#i-chat"/></svg>Text us a bill</a>
+    </div>
+    <div class="num">or text <a data-sms data-sms-display href="sms:+15550100199">(555) 010-0199</a></div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section class="legal" aria-label="Privacy policy and terms">
+  <div class="wrap legal-grid">
+    <div id="privacy-policy">
+      <h3>Privacy policy</h3>
+      <ul>
+        <li>We only collect what you send us: the bills, statements and messages you choose to share, plus your phone number so we can reply.</li>
+        <li>We never ask for bank logins or passwords.</li>
+        <li>We use your information only to find savings and to act on changes you approve.</li>
+        <li>We don’t sell your information.</li>
+        <li>Your bills are stored securely. Text us anytime to have them deleted.</li>
+      </ul>
+      <p class="upd">Last updated October 2026</p>
+    </div>
+    <div id="terms">
+      <h3>Terms</h3>
+      <ul>
+        <li>By texting us, you agree to receive replies about your bills. Message and data rates may apply. Stop anytime.</li>
+        <li>We only cancel, negotiate or switch a service after you approve it by text.</li>
+        <li>When you approve, you authorize us to contact that provider on your behalf for that request.</li>
+        <li>Savings depend on your providers and plans, so results vary. It’s free to try, and you only pay if we save you money.</li>
+        <li>Questions? Email <span data-email>hello@mabel.com</span>.</li>
+      </ul>
+      <p class="upd">Last updated October 2026</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top"><svg><use href="#mark"/></svg><span data-brand>Mabel</span></a>
+    <nav aria-label="Footer">
+      <a href="#privacy-policy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <span data-email>hello@mabel.com</span>
+    </nav>
+    <div>© 2026 <span data-brand>Mabel</span></div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var S = SITE, email = S.EMAIL || ("hello@" + S.BRAND.toLowerCase().replace(/[^a-z0-9]/g,"") + ".com");
+    document.querySelectorAll("[data-brand]").forEach(function(el){ el.textContent = S.BRAND; });
+    document.querySelectorAll("[data-sms]").forEach(function(el){ el.setAttribute("href", "sms:" + S.SMS_NUMBER); });
+    document.querySelectorAll("[data-sms-display]").forEach(function(el){ el.textContent = S.SMS_DISPLAY; });
+    document.querySelectorAll("[data-email]").forEach(function(el){ el.textContent = email; });
+    if (document.title.indexOf(S.BRAND) !== 0) document.title = document.title.replace(/^[^—]+/, S.BRAND + " ");
+    var nav = document.querySelector("header.nav");
+    addEventListener("scroll", function(){ nav.classList.toggle("scrolled", scrollY > 8); }, {passive:true});
+  })();
+</script>
+</body>
+</html>
